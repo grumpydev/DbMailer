@@ -6,6 +6,8 @@
     {
         static int Main(string[] args)
         {
+            ShowHeader();
+
             var settings = new Settings();
             var parser = new CommandLineParser(args);
 
@@ -26,22 +28,29 @@
             if (!settings.IsValid)
             {
                 ShowUsage(args);
-                
+
                 return -1;
             }
+
+            Console.WriteLine("Executing using connfiguration:\n");
+            Console.WriteLine(settings);
 
             var mailer = new CsvMailer(settings);
 
             return mailer.Process() ? 0 : -2;
         }
 
-        private static void ShowUsage(string[] args)
+        private static void ShowHeader()
         {
             Console.WriteLine();
             Console.WriteLine("Database Mailer");
             Console.WriteLine();
             Console.WriteLine("A utility for executing SQL statements and emailing the results as a CSV.");
             Console.WriteLine();
+        }
+
+        private static void ShowUsage(string[] args)
+        {
             Console.WriteLine("Usage: DbMailer.exe connectionString:<connectionString> sql:<sqlToExecute> from:<fromAddress> [<recipients>] [options]");
             Console.WriteLine();
             Console.WriteLine("Options:");

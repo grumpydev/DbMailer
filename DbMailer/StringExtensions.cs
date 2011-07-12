@@ -1,6 +1,8 @@
 ﻿namespace DbMailer
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public static class StringExtensions
     {
@@ -12,6 +14,13 @@
             {
                 outputDelegate.Invoke(temp);
             }
+        }
+
+        public static string AsCommaSeparated(this IEnumerable<string> input)
+        {
+            var inputStrings = input.ToArray();
+
+            return inputStrings.Any() ? inputStrings.Aggregate((s1, s2) => s1 + "," + s2) : "None";
         }
     }
 }

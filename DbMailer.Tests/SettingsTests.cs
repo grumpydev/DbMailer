@@ -1,5 +1,7 @@
 ﻿namespace DbMailer.Tests
 {
+    using System.Diagnostics;
+
     using Should;
 
     using Xunit;
@@ -106,6 +108,5 @@
 
             settings.IsValid.ShouldBeTrue();
         }
-
     }
 }
