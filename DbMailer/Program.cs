@@ -25,7 +25,7 @@
 
             if (!settings.IsValid)
             {
-                ShowUsage();
+                ShowUsage(args);
                 
                 return -1;
             }
@@ -35,9 +35,33 @@
             return mailer.Process() ? 0 : -2;
         }
 
-        private static void ShowUsage()
+        private static void ShowUsage(string[] args)
         {
-            Console.WriteLine("Usage");
+            Console.WriteLine();
+            Console.WriteLine("Database Mailer");
+            Console.WriteLine();
+            Console.WriteLine("A utility for executing SQL statements and emailing the results as a CSV.");
+            Console.WriteLine();
+            Console.WriteLine("Usage: DbMailer.exe connectionString:<connectionString> sql:<sqlToExecute> from:<fromAddress> [<recipients>] [options]");
+            Console.WriteLine();
+            Console.WriteLine("Options:");
+            Console.WriteLine("\tto:<recipients>\t\t\tRecipients to send to");
+            Console.WriteLine("\tcc:<ccRecipients>\t\tRecipients to cc");
+            Console.WriteLine("\tbcc:<ccRecipients>\t\tRecipients to bcc");
+            Console.WriteLine("\tsubject:<emailSubject>\t\tEmail subject");
+            Console.WriteLine("\tbody:<emailBody>\t\tEmail body (see -html)");
+            Console.WriteLine("\t-html\t\t\t\tBody specified is html");
+
+            Console.WriteLine("\tsmtpServer:<server>\t\tSMTP server to use");
+            Console.WriteLine("\tsmtpPort:<port>\t\t\tPort to use");
+            Console.WriteLine("\tsmtpUsername:<username>\t\tUsername to use");
+            Console.WriteLine("\tsmtpPassword:<password>\t\tPassword to use");
+
+            Console.WriteLine();
+
+            Console.WriteLine("Email addresses (to, cc, bcc) should take the form of comma separated lists and at least one must be specified.");
+
+            Console.WriteLine();
         }
     }
 }
