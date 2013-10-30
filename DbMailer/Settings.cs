@@ -31,6 +31,8 @@
 
         public string SmtpPassword { get; set; }
 
+        public int ExecutionTimeout { get; set; }
+
         public Settings()
         {
             this.Subject = "DbMailer Email";
@@ -40,6 +42,8 @@
             this.To = new string[] { };
             this.Cc = new string[] { };
             this.Bcc = new string[] { };
+
+            this.ExecutionTimeout = 120;
         }
 
         public bool IsValid
@@ -55,7 +59,7 @@
 
         public override string ToString()
         {
-            return string.Format("ConnString:\t {0}\nSql:\t\t {1}\nFrom:\t\t {2}\nTo:\t\t {3}\nCc:\t\t {4}\nBcc:\t\t {5}\nSubject:\t {6}\nBody:\t\t {7}\nHtmlBody:\t {8}\nSmtpServer:\t {9}\nSmtpPort:\t {10}\nSmtpUsername:\t {11}\nSmtpPassword:\t {12}", this.ConnectionString, this.Sql, this.From, this.To.AsCommaSeparated(), this.Cc.AsCommaSeparated(), this.Bcc.AsCommaSeparated(), this.Subject, this.Body, this.HtmlBody, this.SmtpServer, this.SmtpPort, this.SmtpUsername, this.SmtpPassword);
+            return string.Format("ConnString:\t {0}\nExec Timeout:\t {13}\nSql:\t\t {1}\nFrom:\t\t {2}\nTo:\t\t {3}\nCc:\t\t {4}\nBcc:\t\t {5}\nSubject:\t {6}\nBody:\t\t {7}\nHtmlBody:\t {8}\nSmtpServer:\t {9}\nSmtpPort:\t {10}\nSmtpUsername:\t {11}\nSmtpPassword:\t {12}", this.ConnectionString, this.Sql, this.From, this.To.AsCommaSeparated(), this.Cc.AsCommaSeparated(), this.Bcc.AsCommaSeparated(), this.Subject, this.Body, this.HtmlBody, this.SmtpServer, this.SmtpPort, this.SmtpUsername, this.SmtpPassword, this.ExecutionTimeout);
         }
     }
 }

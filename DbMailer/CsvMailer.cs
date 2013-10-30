@@ -112,6 +112,8 @@ namespace DbMailer
             {
                 using (var adapter = new SqlDataAdapter(this.settings.Sql, connection))
                 {
+                    adapter.SelectCommand.CommandTimeout = this.settings.ExecutionTimeout;
+
                     using (var resultsTable = new DataTable())
                     {
                         connection.Open();

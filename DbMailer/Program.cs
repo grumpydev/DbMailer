@@ -23,6 +23,7 @@
             parser.ParseArgument("smtpUsername", v => settings.SmtpUsername = v);
             parser.ParseArgument("smtpPassword", v => settings.SmtpPassword = v);
             parser.ParseArgument("smtpPort", v => v.ParseInt(i => settings.SmtpPort = i));
+            parser.ParseArgument("executionTimeout", v => v.ParseInt(i => settings.ExecutionTimeout = i));
             settings.HtmlBody = parser.ArgumentExists("-html");
 
             if (!settings.IsValid)
@@ -54,6 +55,7 @@
             Console.WriteLine("Usage: DbMailer.exe connectionString:<connectionString> sql:<sqlToExecute> from:<fromAddress> [<recipients>] [options]");
             Console.WriteLine();
             Console.WriteLine("Options:");
+            Console.WriteLine("\texecutionTimeout:<seconds>\tSQL execution timeout");
             Console.WriteLine("\tto:<recipients>\t\t\tRecipients to send to");
             Console.WriteLine("\tcc:<ccRecipients>\t\tRecipients to cc");
             Console.WriteLine("\tbcc:<ccRecipients>\t\tRecipients to bcc");
